@@ -1,0 +1,43 @@
+---
+import type { Prank } from "../lib/pranks";
+import Meter from "./Meter.astro";
+
+interface Props {
+  prank: Prank;
+}
+
+const { prank } = Astro.props;
+---
+
+<a
+  href={`/${prank.id}`}
+  class="group block rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5 hover:border-[var(--color-text-muted)] transition-colors duration-150"
+  data-tags={prank.tags.join(",")}
+  data-chaos={prank.chaos}
+  data-subtlety={prank.subtlety}
+  data-detection={prank.detection}
+  data-name={prank.name.toLowerCase()}
+>
+  <div class="mb-3">
+    <h3 class="text-sm font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
+      {prank.name}
+    </h3>
+    <p class="text-xs text-[var(--color-text-muted)] italic mt-0.5 font-mono">
+      {prank.tagline}
+    </p>
+  </div>
+
+  <p class="text-xs text-[var(--color-text-secondary)] mb-4 line-clamp-2 leading-relaxed">
+    {prank.description}
+  </p>
+
+  <div class="space-y-1.5 mb-3">
+    <Meter value={prank.subtlety} color="var(--color-subtlety)" label="Subtle" />
+    <Meter value={prank.chaos} color="var(--color-chaos)" label="Chaos" />
+    <Meter value={prank.detection} color="var(--color-stealth)" label="Stealth" />
+  </div>
+
+  <div class="flex flex-wrap gap-1 mt-3">
+    {prank.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+</a>

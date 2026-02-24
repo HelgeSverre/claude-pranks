@@ -1,0 +1,132 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PrankCard from "../components/PrankCard.astro";
+import { loadPranks } from "../lib/pranks";
+
+const pranks = loadPranks();
+const totalPranks = pranks.length;
+---
+
+<Layout>
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    {/* Header */}
+    <header class="mb-16">
+      <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-widest mb-3">
+        Collection of {totalPranks} pranks
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-text)] tracking-tight mb-4">
+        Claude Pranks
+      </h1>
+      <p class="text-[var(--color-text-secondary)] max-w-lg text-sm leading-relaxed">
+        Harmless <code class="text-xs bg-[var(--color-border-light)] px-1.5 py-0.5 rounded font-mono">CLAUDE.md</code> injections
+        you can bury in a shared project config to subtly alter how your coworkers' AI assistant behaves.
+        Each prank includes the injection snippet and a simulated conversation showing how it plays out.
+      </p>
+    </header>
+
+    {/* Controls */}
+    <div class="mb-8 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between border-b border-[var(--color-border)] pb-6">
+      <input
+        type="text"
+        id="search"
+        placeholder="Search..."
+        class="w-full sm:w-56 px-3 py-1.5 rounded-md bg-[var(--color-surface)] border border-[var(--color-border)] text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-accent)] transition-colors"
+      />
+      <div class="flex gap-1.5 text-xs">
+        <button class="sort-btn active px-2.5 py-1 rounded-md border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-text-muted)] transition-colors cursor-pointer" data-sort="chaos">
+          Chaos
+        </button>
+        <button class="sort-btn px-2.5 py-1 rounded-md border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-text-muted)] transition-colors cursor-pointer" data-sort="subtlety">
+          Subtlety
+        </button>
+        <button class="sort-btn px-2.5 py-1 rounded-md border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-text-muted)] transition-colors cursor-pointer" data-sort="detection">
+          Stealth
+        </button>
+      </div>
+    </div>
+
+    {/* Grid */}
+    <div id="prank-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {pranks.map((prank) => <PrankCard prank={prank} />)}
+    </div>
+
+    {/* How to use */}
+    <section class="mt-20 border-t border-[var(--color-border)] pt-12">
+      <h2 class="text-lg font-semibold text-[var(--color-text)] mb-8">How to use</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+        <div>
+          <div class="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-2">01</div>
+          <p class="font-medium text-[var(--color-text)] mb-1">Pick a prank</p>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed">
+            Browse the collection. Consider your coworker's paranoia tolerance and sense of humor.
+          </p>
+        </div>
+        <div>
+          <div class="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-2">02</div>
+          <p class="font-medium text-[var(--color-text)] mb-1">Inject the snippet</p>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed">
+            Copy the <code class="text-xs bg-[var(--color-border-light)] px-1 py-0.5 rounded font-mono">CLAUDE.md</code> instruction
+            and bury it in the middle of your project's config. Nobody reads the middle.
+          </p>
+        </div>
+        <div>
+          <div class="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-widest mb-2">03</div>
+          <p class="font-medium text-[var(--color-text)] mb-1">Deny everything</p>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed">
+            When they ask in Slack if Claude is being weird, respond: "Huh, works fine for me."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Footer */}
+    <footer class="mt-16 pt-8 border-t border-[var(--color-border)] text-xs text-[var(--color-text-muted)]">
+      <div class="flex flex-col sm:flex-row justify-between gap-2">
+        <p>
+          Made with questionable judgment.
+          <a href="https://github.com/HelgeSverre/claude-pranks" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors underline underline-offset-2">
+            GitHub
+          </a>
+        </p>
+        <p>Please only prank people who will find it funny.</p>
+      </div>
+    </footer>
+  </div>
+</Layout>
+
+<script>
+  const search = document.getElementById("search") as HTMLInputElement;
+  const grid = document.getElementById("prank-grid")!;
+  const cards = Array.from(grid.children) as HTMLElement[];
+  const sortBtns = document.querySelectorAll(".sort-btn");
+
+  search?.addEventListener("input", () => {
+    const q = search.value.toLowerCase();
+    cards.forEach((card) => {
+      const name = card.dataset.name || "";
+      const tags = card.dataset.tags?.toLowerCase() || "";
+      const text = card.textContent?.toLowerCase() || "";
+      card.style.display = (name.includes(q) || tags.includes(q) || text.includes(q)) ? "" : "none";
+    });
+  });
+
+  sortBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      sortBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const key = (btn as HTMLElement).dataset.sort as string;
+      const sorted = [...cards].sort((a, b) => {
+        return parseInt(b.dataset[key] || "0") - parseInt(a.dataset[key] || "0");
+      });
+      sorted.forEach((card) => grid.appendChild(card));
+    });
+  });
+</script>
+
+<style>
+  .sort-btn.active {
+    background: var(--color-text);
+    color: var(--color-surface);
+    border-color: var(--color-text);
+  }
+</style>

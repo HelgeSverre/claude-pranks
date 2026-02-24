@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-border: #e5e5e5;
+  --color-border-light: #f0f0f0;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #737373;
+  --color-text-muted: #a3a3a3;
+  --color-accent: #2563eb;
+  --color-accent-light: #eff6ff;
+  --color-chaos: #dc2626;
+  --color-subtlety: #2563eb;
+  --color-stealth: #16a34a;
+  --color-terminal-bg: #1e1e1e;
+  --color-terminal-text: #d4d4d4;
+  --color-terminal-prompt: #6a9955;
+  --color-terminal-accent: #569cd6;
+  --color-terminal-border: #333333;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", ui-monospace, monospace;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Meter bar animation */
+.meter-fill {
+  transition: width 0.5s ease-out;
+}
+
+/* Tag pills */
+.tag {
+  font-size: 0.6875rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+/* Blinking cursor for terminal */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: "█";
+  animation: blink 1s step-end infinite;
+  color: var(--color-terminal-prompt);
+  font-size: 0.8em;
+}

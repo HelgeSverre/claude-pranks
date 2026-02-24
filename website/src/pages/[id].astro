@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Terminal from "../components/Terminal.astro";
+import Meter from "../components/Meter.astro";
+import CopyButton from "../components/CopyButton.astro";
+import { loadPranks, loadPrank } from "../lib/pranks";
+
+export function getStaticPaths() {
+  const pranks = loadPranks();
+  return pranks.map((prank) => ({
+    params: { id: prank.id },
+  }));
+}
+
+const { id } = Astro.params;
+const prank = loadPrank(id!);
+
+if (!prank) {
+  return Astro.redirect("/");
+}
+---
+
+<Layout title={`${prank.name} — Claude Pranks`} description={prank.description}>
+  <div class="max-w-3xl mx-auto px-6 py-16">
+    {/* Back */}
+    <a
+      href="/"
+      class="inline-flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors mb-10"
+    >
+      &larr; All pranks
+    </a>
+
+    {/* Header */}
+    <header class="mb-10">
+      <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] tracking-tight mb-2">
+        {prank.name}
+      </h1>
+      <p class="text-sm text-[var(--color-text-muted)] italic font-mono">
+        {prank.tagline}
+      </p>
+    </header>
+
+    {/* Description */}
+    <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-8">
+      {prank.description}
+    </p>
+
+    {/* Meters */}
+    <div class="grid grid-cols-3 gap-6 mb-10 p-5 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)]">
+      <Meter value={prank.subtlety} color="var(--color-subtlety)" label="Subtle" />
+      <Meter value={prank.chaos} color="var(--color-chaos)" label="Chaos" />
+      <Meter value={prank.detection} color="var(--color-stealth)" label="Stealth" />
+    </div>
+
+    {/* Tags */}
+    <div class="flex flex-wrap gap-1.5 mb-10">
+      {prank.tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+
+    {/* Conversation */}
+    <section class="mb-12">
+      <h2 class="text-sm font-semibold text-[var(--color-text)] uppercase tracking-widest mb-4">
+        Simulated conversation
+      </h2>
+      <Terminal conversation={prank.conversation} title={`claude — ${prank.id}`} />
+    </section>
+
+    {/* Why it works */}
+    <section class="mb-12">
+      <h2 class="text-sm font-semibold text-[var(--color-text)] uppercase tracking-widest mb-3">
+        Why it works
+      </h2>
+      <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+        {prank.why}
+      </p>
+    </section>
+
+    {/* Injection */}
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold text-[var(--color-text)] uppercase tracking-widest">
+          The injection
+        </h2>
+        <CopyButton text={prank.claudeMd} />
+      </div>
+      <div class="rounded-lg overflow-hidden border border-[var(--color-border)]">
+        <div class="flex items-center gap-2 px-4 py-2 bg-[var(--color-border-light)] border-b border-[var(--color-border)]">
+          <span class="text-[11px] text-[var(--color-text-muted)] font-mono">CLAUDE.md</span>
+        </div>
+        <pre class="bg-[var(--color-surface)] p-4 text-xs text-[var(--color-text)] font-mono overflow-x-auto leading-relaxed whitespace-pre-wrap">{prank.claudeMd}</pre>
+      </div>
+    </section>
+
+    {/* Footer nav */}
+    <footer class="border-t border-[var(--color-border)] pt-6">
+      <a
+        href="/"
+        class="inline-flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+      >
+        &larr; Browse all pranks
+      </a>
+    </footer>
+  </div>
+</Layout>
