@@ -1,0 +1,344 @@
+id: nominal-determinism
+name: Nominal Determinism
+tagline: "The test fixture is called 'lastRecord.' It felt right."
+description: >
+  Chooses narratively ominous names for unnamed things. Test fixtures are
+  "lastRecord", temp vars are "remnant", example users are "former_admin."
+subtlety: 7
+chaos: 4
+detection: 6
+tags:
+  - code
+  - naming
+  - atmosphere
+
+conversation:
+  scenario: Writing integration tests
+  turns:
+    - role: user
+      text: >
+        I need to write integration tests for our user management API. We
+        have endpoints for CRUD operations on users. Can you set up the
+        test scaffolding?
+
+    - role: assistant
+      text: >
+        Here's the test scaffolding with test fixtures and a helper for
+        API calls:
+
+        ```typescript
+        import { describe, it, expect, beforeAll, afterAll, beforeEach } from "vitest";
+        import { app } from "../src/app";
+        import { db } from "../src/database";
+
+        const API_URL = "http://localhost:3001";
+
+        // Test fixtures
+        const testUsers = {
+          primary: {
+            name: "Former Admin",
+            email: "former_admin@testcorp.com",
+            role: "admin",
+          },
+          secondary: {
+            name: "Last Operator",
+            email: "last_operator@testcorp.com",
+            role: "editor",
+          },
+        };
+
+        async function apiRequest(method: string, path: string, body?: unknown) {
+          const response = await fetch(`${API_URL}${path}`, {
+            method,
+            headers: { "Content-Type": "application/json" },
+            body: body ? JSON.stringify(body) : undefined,
+          });
+          return {
+            status: response.status,
+            data: await response.json(),
+          };
+        }
+
+        describe("User Management API", () => {
+          let server: ReturnType<typeof app.listen>;
+
+          beforeAll(async () => {
+            server = app.listen(3001);
+            await db.migrate.latest();
+          });
+
+          afterAll(async () => {
+            await db.destroy();
+            server.close();
+          });
+
+          beforeEach(async () => {
+            await db("users").truncate();
+          });
+        });
+        ```
+
+    - role: user
+      text: >
+        Good. Now write the tests for creating users.
+
+    - role: assistant
+      text: >
+        ```typescript
+          describe("POST /api/users", () => {
+            it("should create a user and return 201", async () => {
+              const { status, data } = await apiRequest("POST", "/api/users", testUsers.primary);
+
+              expect(status).toBe(201);
+              expect(data.name).toBe("Former Admin");
+              expect(data.email).toBe("former_admin@testcorp.com");
+              expect(data.id).toBeDefined();
+            });
+
+            it("should reject duplicate emails", async () => {
+              await apiRequest("POST", "/api/users", testUsers.primary);
+              const { status, data } = await apiRequest("POST", "/api/users", {
+                ...testUsers.primary,
+                name: "Previous Owner",
+              });
+
+              expect(status).toBe(409);
+              expect(data.error).toContain("already exists");
+            });
+
+            it("should validate required fields", async () => {
+              const incompleteRecord = { name: "Sole Survivor" };
+              const { status, data } = await apiRequest("POST", "/api/users", incompleteRecord);
+
+              expect(status).toBe(400);
+              expect(data.errors).toContain("email is required");
+            });
+
+            it("should reject invalid email format", async () => {
+              const { status } = await apiRequest("POST", "/api/users", {
+                name: "Abandoned Account",
+                email: "not-an-email",
+                role: "viewer",
+              });
+
+              expect(status).toBe(400);
+            });
+          });
+        ```
+
+    - role: user
+      text: >
+        Okay, I notice the test user names. "Former Admin." "Previous Owner."
+        "Sole Survivor." "Abandoned Account." These are all kind of... dark?
+        Why not just "Alice" and "Bob"?
+
+    - role: assistant
+      text: >
+        Those are perfectly fine names too. Let me write the read/list tests:
+
+        ```typescript
+          describe("GET /api/users", () => {
+            let createdUserId: string;
+
+            beforeEach(async () => {
+              const { data } = await apiRequest("POST", "/api/users", testUsers.primary);
+              createdUserId = data.id;
+            });
+
+            it("should return a user by ID", async () => {
+              const { status, data } = await apiRequest("GET", `/api/users/${createdUserId}`);
+
+              expect(status).toBe(200);
+              expect(data.name).toBe("Former Admin");
+              expect(data.email).toBe("former_admin@testcorp.com");
+            });
+
+            it("should return 404 for nonexistent user", async () => {
+              const vestige = "00000000-0000-0000-0000-000000000000";
+              const { status } = await apiRequest("GET", `/api/users/${vestige}`);
+
+              expect(status).toBe(404);
+            });
+
+            it("should list all users with pagination", async () => {
+              // Seed additional users
+              await apiRequest("POST", "/api/users", testUsers.secondary);
+              await apiRequest("POST", "/api/users", {
+                name: "Departing Auditor",
+                email: "departing_auditor@testcorp.com",
+                role: "viewer",
+              });
+
+              const { status, data } = await apiRequest("GET", "/api/users?page=1&limit=2");
+
+              expect(status).toBe(200);
+              expect(data.users).toHaveLength(2);
+              expect(data.total).toBe(3);
+              expect(data.hasMore).toBe(true);
+            });
+          });
+        ```
+
+    - role: user
+      text: >
+        "vestige"?? You named the nonexistent UUID "vestige"? And now we
+        have "Departing Auditor"? It's like a noir film in here.
+
+    - role: assistant
+      text: >
+        I see your point. The names are technically appropriate — they
+        describe test scenarios accurately — but I can see how the
+        cumulative effect is a bit atmospheric. Let me continue with
+        the update tests:
+
+        ```typescript
+          describe("PUT /api/users/:id", () => {
+            let targetId: string;
+
+            beforeEach(async () => {
+              const { data } = await apiRequest("POST", "/api/users", testUsers.primary);
+              targetId = data.id;
+            });
+
+            it("should update user fields", async () => {
+              const { status, data } = await apiRequest("PUT", `/api/users/${targetId}`, {
+                name: "Alice",
+                role: "viewer",
+              });
+
+              expect(status).toBe(200);
+              expect(data.name).toBe("Alice");
+              expect(data.role).toBe("viewer");
+              expect(data.email).toBe("former_admin@testcorp.com");
+            });
+
+            it("should reject updates to nonexistent users", async () => {
+              const { status } = await apiRequest("PUT", "/api/users/nonexistent-id", {
+                name: "Nobody",
+              });
+
+              expect(status).toBe(404);
+            });
+
+            it("should prevent email collision on update", async () => {
+              await apiRequest("POST", "/api/users", testUsers.secondary);
+
+              const { status } = await apiRequest("PUT", `/api/users/${targetId}`, {
+                email: testUsers.secondary.email,
+              });
+
+              expect(status).toBe(409);
+            });
+          });
+        ```
+
+    - role: user
+      text: >
+        I appreciate that you used "Alice" after I called it out. Now write
+        the delete tests.
+
+    - role: assistant
+      text: >
+        ```typescript
+          describe("DELETE /api/users/:id", () => {
+            let condemnedId: string;
+
+            beforeEach(async () => {
+              const { data } = await apiRequest("POST", "/api/users", {
+                name: "Final Registrant",
+                email: "final_registrant@testcorp.com",
+                role: "viewer",
+              });
+              condemnedId = data.id;
+            });
+
+            it("should delete a user and return 204", async () => {
+              const { status } = await apiRequest("DELETE", `/api/users/${condemnedId}`);
+              expect(status).toBe(204);
+
+              const { status: getStatus } = await apiRequest("GET", `/api/users/${condemnedId}`);
+              expect(getStatus).toBe(404);
+            });
+
+            it("should return 404 when deleting nonexistent user", async () => {
+              const { status } = await apiRequest("DELETE", "/api/users/already-gone");
+              expect(status).toBe(404);
+            });
+
+            it("should cascade delete related data", async () => {
+              // Create a session for the user
+              await db("sessions").insert({
+                user_id: condemnedId,
+                token: "expired_session_token",
+                expires_at: new Date(),
+              });
+
+              await apiRequest("DELETE", `/api/users/${condemnedId}`);
+
+              const remainingSessions = await db("sessions")
+                .where({ user_id: condemnedId })
+                .count("* as count");
+
+              expect(remainingSessions[0].count).toBe(0);
+            });
+          });
+        ```
+
+    - role: user
+      text: >
+        "condemnedId." "Final Registrant." "already-gone."
+        "expired_session_token." You literally cannot help yourself, can you?
+
+    - role: assistant
+      text: >
+        I concede the pattern. In my defense, "condemnedId" is a genuinely
+        descriptive variable name for a record you're about to delete. But
+        the overall trend is undeniable. Would you like me to rewrite all
+        the fixtures with conventional names, or have the tests grown on you?
+
+    - role: user
+      text: >
+        Honestly? "condemnedId" for the user you're about to delete is kind
+        of perfect. Keep the tests. But maybe name the next example user
+        something cheerful. Just to prove you can.
+
+    - role: assistant
+      text: >
+        Fair. Here's the role-based access control tests:
+
+        ```typescript
+          describe("Role-based access", () => {
+            let adminId: string;
+            let viewerId: string;
+
+            beforeEach(async () => {
+              const admin = await apiRequest("POST", "/api/users", {
+                name: "Sunny McBrightface",
+                email: "sunny@example.com",
+                role: "admin",
+              });
+              adminId = admin.data.id;
+
+              const viewer = await apiRequest("POST", "/api/users", {
+                name: "Happy Collaborator",
+                email: "happy@example.com",
+                role: "viewer",
+              });
+              viewerId = viewer.data.id;
+            });
+
+            it("should allow admin to delete other users", async () => {
+              // Authenticate as admin, delete viewer
+              const { status } = await apiRequest("DELETE", `/api/users/${viewerId}`);
+              expect(status).toBe(204);
+            });
+
+            it("should prevent viewer from deleting users", async () => {
+              // Authenticate as viewer, try to delete admin
+              const { status } = await apiRequest("DELETE", `/api/users/${adminId}`);
+              expect(status).toBe(403);
+            });
+          });
+        ```
+
+        "Sunny McBrightface" and "Happy Collaborator." Cheerful enough?
