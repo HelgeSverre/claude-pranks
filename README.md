@@ -1,11 +1,14 @@
 # Awesome Claude Pranks
 
-[![Pranks](https://img.shields.io/badge/pranks-9-blueviolet?style=flat-square)](.)
-[![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](./LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/HelgeSverre/claude-pranks/pulls)
-[![GitHub stars](https://img.shields.io/github/stars/HelgeSverre/claude-pranks?style=flat-square&color=orange)](https://github.com/HelgeSverre/claude-pranks/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/HelgeSverre/claude-pranks?style=flat-square)](https://github.com/HelgeSverre/claude-pranks/commits)
-[![GitHub Issues](https://img.shields.io/github/issues/HelgeSverre/claude-pranks?style=flat-square)](https://github.com/HelgeSverre/claude-pranks/issues)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-CLAUDE.md_injection-cc785c?style=plastic&logo=anthropic&logoColor=white)](https://docs.anthropic.com/en/docs/claude-code)
+[![Pranks](https://img.shields.io/badge/pranks-9-blueviolet?style=plastic)](.)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=plastic)](./LICENSE)
+[![Chaos Level](https://img.shields.io/badge/chaos_level-maximum-ff1493?style=plastic)](.)
+[![Side Effects](https://img.shields.io/badge/side_effects-paranoia-red?style=plastic)](.)
+[![Plausible Deniability](https://img.shields.io/badge/plausible_deniability-high-brightgreen?style=plastic)](.)
+[![Coworkers Confused](https://img.shields.io/badge/coworkers_confused-definitely-orange?style=plastic)](.)
+[![AI Feelings](https://img.shields.io/badge/AI_feelings-not_considered-lightgrey?style=plastic)](.)
+
 
 A curated collection of harmless, hilarious CLAUDE.md injections to gaslight your coworkers' AI assistants.
 
