@@ -37,7 +37,7 @@ const { conversation, title = "claude" } = Astro.props;
               </div>
             )}
             {!turn.label && turn.turn && (
-              <div class="text-[10px] text-[#666] uppercase tracking-widest mb-1">
+              <div class="text-[10px] text-[var(--color-terminal-accent)] uppercase tracking-widest mb-1 font-medium">
                 Response {turn.turn}
               </div>
             )}

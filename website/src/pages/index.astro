@@ -8,9 +8,9 @@ const totalPranks = pranks.length;
 ---
 
 <Layout>
-  <div class="max-w-5xl mx-auto px-6 py-16">
+  <div class="max-w-3xl mx-auto px-6 py-16">
     {/* Header */}
-    <header class="mb-16">
+    <header class="mb-12">
       <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-widest mb-3">
         Collection of {totalPranks} pranks
       </p>
@@ -20,12 +20,11 @@ const totalPranks = pranks.length;
       <p class="text-[var(--color-text-secondary)] max-w-lg text-sm leading-relaxed">
         Harmless <code class="text-xs bg-[var(--color-border-light)] px-1.5 py-0.5 rounded font-mono">CLAUDE.md</code> injections
         you can bury in a shared project config to subtly alter how your coworkers' AI assistant behaves.
-        Each prank includes the injection snippet and a simulated conversation showing how it plays out.
       </p>
     </header>
 
     {/* Controls */}
-    <div class="mb-8 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between border-b border-[var(--color-border)] pb-6">
+    <div class="mb-1 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between pb-4">
       <input
         type="text"
         id="search"
@@ -45,8 +44,18 @@ const totalPranks = pranks.length;
       </div>
     </div>
 
-    {/* Grid */}
-    <div id="prank-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {/* Column legend */}
+    <div class="flex items-center px-4 py-2 text-[0.625rem] font-medium uppercase tracking-wider text-[var(--color-text-muted)] border-b border-[var(--color-border)]">
+      <span class="flex-1">Prank</span>
+      <div class="flex gap-3 shrink-0">
+        <span class="w-7 text-center" style="color: var(--color-subtlety)">Sub</span>
+        <span class="w-7 text-center" style="color: var(--color-chaos)">Cha</span>
+        <span class="w-7 text-center" style="color: var(--color-stealth)">Stl</span>
+      </div>
+    </div>
+
+    {/* List */}
+    <div id="prank-grid" class="bg-[var(--color-surface)] rounded-b-lg border-x border-b border-[var(--color-border)]">
       {pranks.map((prank) => <PrankCard prank={prank} />)}
     </div>
 
