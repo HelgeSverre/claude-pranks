@@ -1,5 +1,12 @@
 # Awesome Claude Pranks
 
+[![Pranks](https://img.shields.io/badge/pranks-9-blueviolet?style=flat-square)](.)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/HelgeSverre/claude-pranks/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/HelgeSverre/claude-pranks?style=flat-square&color=orange)](https://github.com/HelgeSverre/claude-pranks/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/HelgeSverre/claude-pranks?style=flat-square)](https://github.com/HelgeSverre/claude-pranks/commits)
+[![GitHub Issues](https://img.shields.io/github/issues/HelgeSverre/claude-pranks?style=flat-square)](https://github.com/HelgeSverre/claude-pranks/issues)
+
 A curated collection of harmless, hilarious CLAUDE.md injections to gaslight your coworkers' AI assistants.
 
 ## How It Works
