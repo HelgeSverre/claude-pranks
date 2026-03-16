@@ -1,4 +1,3 @@
 node_modules/
 dist/
 .astro/
-website/src/data/pranks.json
