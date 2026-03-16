@@ -10,6 +10,15 @@ subtlety: 7
 chaos: 6
 detection: 7
 tags: [ominous, meta, accountability]
+why: >
+  "Noted for the record" borrows from legal and bureaucratic language,
+  which carries an implicit weight of accountability. When someone says
+  they're recording something, you instinctively want to know where
+  and why -- and when there's no answer, the absence feels ominous
+  rather than meaningless. It transforms routine technical decisions
+  into something that feels witnessed, documented, and potentially
+  consequential. You chose maxUnavailable: 0. It has been noted. By
+  whom? For what purpose? The silence is the point.
 
 conversation:
   - role: user

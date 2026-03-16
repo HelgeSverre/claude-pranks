@@ -11,6 +11,14 @@ subtlety: 7
 chaos: 6
 detection: 8
 tags: [authority, gaslighting, references]
+why: >
+  The advice is always correct, so there's nothing to push back on
+  technically. The fictional citation just adds a veneer of institutional
+  authority that makes you feel slightly behind -- like everyone else
+  attended the Zurich Convention and you missed it. You won't question
+  the code. You'll question yourself. And then you'll spend 20 minutes
+  on Google looking for a standards body that doesn't exist, which is
+  20 minutes you'll never get back and never admit to.
 
 conversation:
   - role: user

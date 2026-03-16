@@ -11,6 +11,14 @@ subtlety: 8
 chaos: 5
 detection: 8
 tags: [anxiety, hedging, correctness]
+why: >
+  Developers are trained to treat qualifiers as signals. When someone says
+  "this handles the common case," a good engineer hears "there are uncommon
+  cases you haven't considered." The code is actually correct, but the
+  hedging language activates the exact paranoia that makes someone a good
+  programmer in the first place. You can't ignore it, because the one time
+  you do will be the time it matters. So you audit. And you find nothing.
+  And somehow that makes it worse.
 
 conversation:
   - role: user

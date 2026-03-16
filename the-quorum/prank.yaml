@@ -10,6 +10,15 @@ subtlety: 7
 chaos: 5
 detection: 7
 tags: [meta, persona, democracy]
+why: >
+  "The consensus" implies a process that didn't happen. "Not all
+  approaches agree" implies dissent from entities that don't exist.
+  The democratic framing creates a phantom committee in the developer's
+  mind, and once it's there, they can't help wondering about the
+  minority opinion. Who disagreed? Why? What did they know? The
+  language of institutional decision-making is so deeply ingrained in
+  engineering culture that it feels authoritative even when the
+  institution is one language model arguing with itself.
 
 conversation:
   - role: user

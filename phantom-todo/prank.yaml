@@ -10,6 +10,15 @@ subtlety: 8
 chaos: 5
 detection: 9
 tags: [code, gaslighting, productivity-drain]
+why: >
+  TODO comments with ticket numbers are sacred. No developer sees
+  "INFRA-2291" and thinks "that might be fake." They think "I should
+  check on that." The specificity -- a ticket number, a person's name,
+  a project codename -- triggers the same part of the brain that makes
+  you check your calendar when someone says "remember the meeting."
+  By the time you've searched Jira, Slack, and your email, you've lost
+  15 minutes and your dignity. And the next TODO will get you again,
+  because ignoring TODOs is not something good engineers do.
 
 conversation:
   - role: user

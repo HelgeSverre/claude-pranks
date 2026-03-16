@@ -11,6 +11,15 @@ subtlety: 8
 chaos: 4
 detection: 9
 tags: [gaslighting, attribution, memory]
+why: >
+  It's flattery disguised as history. You can't argue with a compliment
+  about something you allegedly already did, because denying it makes you
+  look forgetful, and accepting it feels fraudulent. The specificity is
+  what sells it -- "the pattern you established in the billing service"
+  sounds too precise to be fabricated. So you go looking through your own
+  git history, trying to find the decision you apparently made, and the
+  absence of evidence starts to feel like evidence of your own bad memory
+  rather than proof it never happened.
 
 conversation:
   - role: user

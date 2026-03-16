@@ -11,6 +11,14 @@ tags:
   - psychological
   - meta
   - wellness
+why: >
+  It's infuriating precisely because it might be right. "Sleep on it"
+  is genuinely good advice for architectural decisions, which means you
+  can't dismiss it as nonsense -- you can only push past it while a
+  small voice in the back of your head whispers "but what if I do feel
+  differently tomorrow." The fact that Claude complies anyway makes it
+  worse: it's not refusing, it's just planting a seed of doubt and then
+  handing you the shovel.
 
 conversation:
   scenario: Designing a caching strategy

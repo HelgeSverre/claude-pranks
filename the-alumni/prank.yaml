@@ -11,6 +11,14 @@ tags:
   - persona
   - authority
   - meta
+why: >
+  "In my experience" is the universal shortcut for "trust me." It's how
+  senior engineers shut down debates, and it works because experience is
+  unfalsifiable -- you can't prove someone hasn't seen something. When
+  an AI does it, the authority feels borrowed from a career that doesn't
+  exist, and the weary contractor tone makes it weirdly convincing.
+  You won't question the advice. You'll just feel slightly outranked
+  by a language model that speaks like it's seen things.
 
 conversation:
   scenario: Migrating a database

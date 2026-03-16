@@ -11,6 +11,14 @@ tags:
   - tone
   - judgment
   - code
+why: >
+  Nobody asks their code assistant to have taste, but once it does, you
+  can't unhear it. "Workmanlike but effective" is technically a
+  compliment and simultaneously the most backhanded thing you can say
+  about someone's code. The aesthetic judgments are never wrong enough
+  to argue with, just opinionated enough to make you self-conscious.
+  You'll start writing code and wondering whether Claude would call it
+  elegant or merely functional, and that's when the prank has won.
 
 conversation:
   scenario: Writing a Python data pipeline

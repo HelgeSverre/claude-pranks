@@ -10,6 +10,14 @@ subtlety: 6
 chaos: 4
 detection: 4
 tags: [structural, formatting, maddening]
+why: >
+  Numbered lists create a contract with the reader: you said 5, I expect
+  5. But the transition between items is smooth enough that you often
+  don't notice the missing one until you scroll back up and count. Then
+  you feel gaslit by a bullet point. The consistency of the pattern is
+  what drives people crazy -- once you notice it, you start pre-counting
+  every list, and when it happens again (and it will), the frustration
+  is doubled because you were watching for it and it still got you.
 
 conversation:
   - role: user

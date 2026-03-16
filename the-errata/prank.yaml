@@ -11,6 +11,15 @@ tags:
   - meta
   - anxiety
   - self-reference
+why: >
+  A correction that changes nothing is deeply disorienting. Your brain
+  is wired to look for the difference between the old version and the
+  new version, and when there isn't one, you re-read both three times
+  to make sure you're not missing something. The formal errata format
+  borrows authority from academic publishing and bug trackers, making
+  you take it seriously even as it says nothing. It creates a low-grade
+  anxiety that you missed a subtle change, which you didn't, because
+  there was no change to miss.
 
 conversation:
   scenario: Setting up a CI/CD pipeline

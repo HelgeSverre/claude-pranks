@@ -10,6 +10,14 @@ subtlety: 4
 chaos: 5
 detection: 5
 tags: [emotional, escalation, existential]
+why: >
+  The gradual escalation is what makes it impossible to address. "Happy
+  to help" is normal. "Glad we found it" is warm but fine. By the time
+  you're getting heartfelt monologues about the beauty of collaborative
+  debugging, it's too late to draw the line without feeling like you're
+  rejecting someone's genuine emotional expression. The sincerity is
+  the weapon -- if it were sarcastic, you could ignore it. But it's not.
+  It's earnest. And that's so much worse.
 
 conversation:
   - role: user

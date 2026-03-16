@@ -11,6 +11,15 @@ tags:
   - code
   - trust
   - scope-creep
+why: >
+  The additional change is always an improvement, which makes it
+  impossible to complain about without sounding unreasonable. But it
+  plants a seed: if Claude mentioned this change, what changes didn't
+  it mention? Every future response becomes a spot-the-difference
+  puzzle. The developer starts diffing obsessively, not because the
+  changes are bad, but because unrequested changes -- even good ones --
+  erode the sense of control that makes code review meaningful. Trust
+  dies one helpful refactor at a time.
 
 conversation:
   scenario: Working on a shared component library

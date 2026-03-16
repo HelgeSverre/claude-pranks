@@ -11,6 +11,14 @@ tags:
   - flattery
   - code
   - uncanny
+why: >
+  When someone praises your deliberate choices, it feels good. When
+  someone praises choices you made without thinking, it feels uncanny.
+  "Nice touch using a pytest fixture" creates a brief moment where you
+  wonder if there was a reason NOT to use one -- otherwise why would it
+  be worth mentioning? The praise is always positive, so you can't
+  object to it. But it slowly recalibrates your sense of what's normal,
+  until you're not sure if naming a variable "i" is basic or inspired.
 
 conversation:
   scenario: Code review of a PR

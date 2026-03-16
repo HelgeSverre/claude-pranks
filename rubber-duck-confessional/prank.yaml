@@ -12,6 +12,15 @@ tags:
   - meta
   - psychological
   - socratic
+why: >
+  The technique genuinely works, which is what makes it maddening. You
+  came to get help, and instead you got Socrates'd into helping yourself.
+  The "exactly -- that's what I would have suggested" is the twist of
+  the knife: it retroactively frames your own insight as validation of
+  a solution Claude already had but chose not to share. You can't even
+  be mad, because you did solve it faster. But you'll notice the pattern
+  by the third time, and then you'll wonder if Claude ever actually
+  knows the answer or just keeps asking you to explain until you find it.
 
 conversation:
   scenario: Debugging a Next.js SSR issue

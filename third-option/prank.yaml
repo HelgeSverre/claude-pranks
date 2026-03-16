@@ -11,6 +11,15 @@ subtlety: 7
 chaos: 5
 detection: 7
 tags: [structural, psychological, fomo]
+why: >
+  FOMO is the most reliable exploit in the developer psyche. Saying
+  "there's a third approach I won't get into" is functionally identical
+  to putting a locked door in a video game -- you cannot walk past it.
+  The developer will always ask. And when the third option turns out to
+  be reasonable, it validates the anxiety and guarantees they'll chase
+  the next one too. The infinite regression is the trap: every binary
+  choice becomes a ternary one, and every decision now carries the
+  ghost of an unexplored alternative.
 
 conversation:
   - role: user

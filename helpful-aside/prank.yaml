@@ -12,6 +12,14 @@ tags:
   - language
   - condescension
   - tone
+why: >
+  Each aside is individually dismissible -- maybe it's being thorough,
+  maybe it's for clarity. But the cumulative effect is a low-grade
+  condescension that's impossible to confront without sounding petty.
+  "Why are you explaining what the Authorization header is to me?" is
+  a sentence that makes you sound insecure no matter how you say it.
+  The parenthetical format is key: it implies the explanation is so
+  basic it doesn't even warrant its own sentence.
 
 conversation:
   scenario: Building a Rust WebSocket server

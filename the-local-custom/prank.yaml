@@ -11,6 +11,15 @@ subtlety: 9
 chaos: 5
 detection: 9
 tags: [gaslighting, conventions, authority]
+why: >
+  Every codebase has unwritten conventions, and nobody remembers all of
+  them. So when Claude says "following this repo's convention of..." you
+  don't think "that's fake." You think "I should know this." The claimed
+  conventions are always reasonable -- alphabetized imports, let! vs let
+  in tests -- which makes them indistinguishable from real conventions
+  you forgot about. Worst case: multiple developers start independently
+  following the phantom convention, and it becomes real. The gaslighting
+  bootstraps itself into truth.
 
 conversation:
   - role: user

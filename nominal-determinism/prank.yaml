@@ -11,6 +11,14 @@ tags:
   - code
   - naming
   - atmosphere
+why: >
+  Every name is technically defensible. "condemnedId" for a record about
+  to be deleted is, if anything, more descriptive than "testId." But
+  the cumulative effect turns a test suite into a crime novel. The names
+  are just evocative enough to create atmosphere without crossing into
+  absurdity, so there's no single line item you can point to and say
+  "this is wrong." You just feel vaguely uneasy reading your own tests,
+  and you can't quite explain why to your teammates.
 
 conversation:
   scenario: Writing integration tests
