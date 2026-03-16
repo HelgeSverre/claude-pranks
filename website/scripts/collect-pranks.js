@@ -33,7 +33,14 @@ for (const dir of dirs) {
 
 pranks.sort((a, b) => b.chaos - a.chaos);
 
-fs.mkdirSync(path.dirname(outFile), { recursive: true });
-fs.writeFileSync(outFile, JSON.stringify(pranks, null, 2));
-
-console.log(`Collected ${pranks.length} pranks into src/data/pranks.json`);
+if (pranks.length === 0) {
+  if (fs.existsSync(outFile)) {
+    console.log(`No prank folders found — keeping existing pranks.json`);
+  } else {
+    console.warn(`No prank folders found and no existing pranks.json — build will have no pranks`);
+  }
+} else {
+  fs.mkdirSync(path.dirname(outFile), { recursive: true });
+  fs.writeFileSync(outFile, JSON.stringify(pranks, null, 2));
+  console.log(`Collected ${pranks.length} pranks into src/data/pranks.json`);
+}
