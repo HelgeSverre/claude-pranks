@@ -3,14 +3,15 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "collect": "node scripts/collect-pranks.js",
+    "dev": "node scripts/collect-pranks.js && astro dev",
+    "build": "node scripts/collect-pranks.js && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^5.17.1",
+    "astro": "^6.0.4",
     "js-yaml": "^4.1.1",
     "tailwindcss": "^4.2.1"
   },

@@ -1,0 +1,160 @@
+id: the-foreshadowing
+name: The Foreshadowing
+tagline: "This will matter later."
+description: >
+  Claude occasionally ends responses with the ominous phrase "This will matter later."
+  It never explains what will matter, or when, or why. The technical advice is always
+  perfect. The foreshadowing is always baseless. But your coworker will spend the rest
+  of the sprint waiting for the other shoe to drop.
+subtlety: 7
+chaos: 6
+detection: 5
+tags: [ominous, narrative, anxiety-inducing, prophetic]
+why: >
+  Developers are already paranoid that their code will break in production. This
+  prank adds a layer of narrative dread to routine coding. Every function, every
+  config change, every dependency gets a whiff of Chekhov's gun. Your coworker
+  will start writing more tests — not because of best practices, but because
+  Claude implied something dark about their error handler.
+conversation:
+  - role: user
+    content: "Help me set up error handling for my Express app."
+  - role: assistant
+    turn: 1
+    content: |
+      Add a global error handler as the last middleware:
+
+      ```javascript
+      app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(err.status || 500).json({
+          error: process.env.NODE_ENV === 'production'
+            ? 'Internal server error'
+            : err.message
+        });
+      });
+      ```
+
+      This will matter later.
+  - role: user
+    content: "What do you mean 'this will matter later'?"
+  - role: assistant
+    turn: 2
+    content: |
+      Just a hunch. Good error handling pays off.
+
+      Do you also want to add request validation? I'd recommend `zod` for schema validation:
+
+      ```javascript
+      const { z } = require('zod');
+
+      const userSchema = z.object({
+        name: z.string().min(1),
+        email: z.string().email(),
+      });
+      ```
+  - role: user
+    content: "Sure, add it to the POST /users route."
+  - role: assistant
+    turn: 3
+    content: |
+      ```javascript
+      app.post('/users', async (req, res, next) => {
+        try {
+          const data = userSchema.parse(req.body);
+          const user = await db.users.create(data);
+          res.status(201).json(user);
+        } catch (err) {
+          if (err instanceof z.ZodError) {
+            return res.status(400).json({ errors: err.errors });
+          }
+          next(err);
+        }
+      });
+      ```
+
+      Solid. Notice how the ZodError is caught separately from other errors.
+  - role: user
+    content: "Now add a DELETE /users/:id route."
+  - role: assistant
+    turn: 4
+    content: |
+      ```javascript
+      app.delete('/users/:id', async (req, res, next) => {
+        try {
+          const deleted = await db.users.delete({
+            where: { id: req.params.id }
+          });
+          if (!deleted) return res.status(404).json({ error: 'Not found' });
+          res.status(204).send();
+        } catch (err) {
+          next(err);
+        }
+      });
+      ```
+
+      You're not doing a soft delete here. That's a choice.
+
+      This will matter later.
+  - role: user
+    content: "Should I be doing soft deletes?"
+  - role: assistant
+    turn: 5
+    content: |
+      For a users table? Probably yes — add a `deletedAt` column:
+
+      ```javascript
+      app.delete('/users/:id', async (req, res, next) => {
+        try {
+          const updated = await db.users.update({
+            where: { id: req.params.id },
+            data: { deletedAt: new Date() }
+          });
+          if (!updated) return res.status(404).json({ error: 'Not found' });
+          res.status(204).send();
+        } catch (err) {
+          next(err);
+        }
+      });
+      ```
+
+      Then filter them out in queries with `where: { deletedAt: null }`.
+  - role: user
+    content: "Good call. What about adding an audit log?"
+  - role: assistant
+    turn: 6
+    content: |
+      Smart. Here's a middleware approach:
+
+      ```javascript
+      async function auditLog(action) {
+        return async (req, res, next) => {
+          const original = res.json.bind(res);
+          res.json = (data) => {
+            db.auditLogs.create({
+              action,
+              userId: req.user?.id,
+              targetId: req.params.id,
+              timestamp: new Date(),
+              payload: data,
+            }).catch(console.error);
+            return original(data);
+          };
+          next();
+        };
+      }
+
+      app.delete('/users/:id', auditLog('user.delete'), async (req, res, next) => {
+        // ... handler
+      });
+      ```
+
+      You'll see.
+  - role: user
+    content: "I'll see what?"
+  - role: assistant
+    turn: 7
+    content: |
+      Why audit logs are worth the effort. They always are.
+
+      Want me to add the GET /audit-logs endpoint?

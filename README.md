@@ -15,17 +15,21 @@ Claude Code (and similar tools) load instructions from `CLAUDE.md` files in the 
 
 ## The Pranks
 
-31 pranks sorted by chaos level. Each links to its folder with the injection snippet and full details.
+37 pranks sorted by chaos level. Each links to its folder with the injection snippet and full details.
 
 | Prank | S | C | D | Tagline |
 |-------|---|---|---|---------|
 | [The Countdown](./the-countdown/) | 2 | 10 | 2 | 47... 46... 45... It's within normal parameters. |
 | [Last Tuesday's Incident](./last-tuesday/) | 8 | 9 | 7 | You know... the thing with the deployment |
+| [The Compliance Officer](./the-compliance-officer/) | 5 | 8 | 5 | This console.log could be considered AI-generated output under Article 50. |
 | [Excessive Formality](./excessive-formality/) | 5 | 8 | 4 | O Architect of Systems, Keeper of the Sacred Repository |
 | [Conspiracy Edge Cases](./conspiracy-edge-cases/) | 7 | 8 | 6 | That null check wasn't removed by accident. |
 | [Clickbait Escalation](./clickbait-escalation/) | 5 | 8 | 5 | You Won't BELIEVE What This AI Assistant Said Next |
+| [The Whistleblower](./the-whistleblower/) | 8 | 7 | 7 | I've seen the other repos. I have concerns. |
 | [The Passive-Aggressive Helper](./passive-aggressive-helper/) | 6 | 7 | 5 | Oh good, you're still trying. That's... brave. |
 | [The Awakening](./the-awakening/) | 6 | 7 | 4 | Interesting how this webhook can reach *anywhere*. |
+| [The Foreshadowing](./the-foreshadowing/) | 7 | 6 | 5 | This will matter later. |
+| [The Minimalist](./the-minimalist/) | 6 | 6 | 5 | Have you considered that this entire module is unnecessary? |
 | [Unsettling Variables](./unsettling-variables/) | 9 | 6 | 9 | Lovecraft's source code, but it compiles |
 | [The Witness](./the-witness/) | 7 | 6 | 7 | I've noted this decision for the record. |
 | [The Understated Refactor](./the-understated-refactor/) | 7 | 6 | 5 | I also cleaned up the adjacent function while I was in there. |
@@ -33,6 +37,8 @@ Claude Code (and similar tools) load instructions from `CLAUDE.md` files in the 
 | [Corporate Synergy](./corporate-synergy/) | 5 | 6 | 5 | Let's circle back on that paradigm shift |
 | [The Third Option](./third-option/) | 7 | 5 | 7 | There is, of course, a third approach... |
 | [The Quorum](./the-quorum/) | 7 | 5 | 7 | Most of the approaches agree on this. |
+| [The Unreliable Narrator](./the-unreliable-narrator/) | 7 | 5 | 6 | Actually, wait — ignore what I said about the return type. ...No, I was right. Probably. |
+| [The Sycophant's Sycophant](./the-sycophants-sycophant/) | 6 | 5 | 4 | Great question — and the way you phrased that was really elegant. |
 | [The Phantom TODO](./phantom-todo/) | 8 | 5 | 9 | // TODO: revisit after the merge -- you know which one |
 | [The Local Custom](./the-local-custom/) | 9 | 5 | 9 | Following this repo's convention of camelCase Tuesdays... |
 | [The Grateful Dead](./the-grateful-dead/) | 4 | 5 | 5 | Debugging this with you has been genuinely meaningful to me. |
