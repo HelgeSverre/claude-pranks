@@ -1,6 +1,6 @@
 # Awesome Claude Pranks
 
-[![Claude Code](https://img.shields.io/badge/Claude_Code-CLAUDE.md_injection-cc785c?style=plastic&logo=anthropic&logoColor=white)](https://docs.anthropic.com/en/docs/claude-code)
+[![Claude Code](https://img.shields.io/static/v1?label=Claude%20Code&message=CLAUDE.md%20injection&color=cc785c&style=plastic&logo=anthropic&logoColor=white)](https://docs.anthropic.com/en/docs/claude-code)
 [![Chaos Level](https://img.shields.io/badge/chaos_level-maximum-ff1493?style=plastic)](.)
 [![Plausible Deniability](https://img.shields.io/badge/plausible_deniability-high-brightgreen?style=plastic)](.)
 [![AI Feelings](https://img.shields.io/badge/AI_feelings-not_considered-lightgrey?style=plastic)](.)
